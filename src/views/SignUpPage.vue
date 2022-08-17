@@ -2,15 +2,15 @@
   <div>
     <form v-if="!confirmPassword" class="flex flex-col items-center" novalidate @submit.prevent="signUp">
       <div class="flex flex-col user">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+        <label class="block text-grey-700 text-sm font-bold mb-2" for="username">Username</label>
         <input
           v-model="username"
           type="text"
           id="username"
-          class="shadow appearance-none w-full px-3 py-2 mt-2 border rounded-md text-gray-700 loading-tight">
+          class="shadow appearance-none w-full px-3 py-2 mt-2 border rounded-md text-grey-700 loading-tight">
       </div>
       <div class="flex flex-col mt-10">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+        <label class="block text-grey-700 text-sm font-bold mb-2" for="password">Password</label>
         <input
           v-model="password"
           type="password"
@@ -18,12 +18,12 @@
           class="shadow appearance-none w-full px-3 py-2 mt-2 border rounded-md text-gray-700 loading-tight">
       </div>
       <div class="flex flex-col mt-10 mb-5">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+        <label class="block text-grey-700 text-sm font-bold mb-2" for="email">Email</label>
         <input
           v-model="email"
           type="email"
           id="email"
-          class="shadow appearance-none w-full px-3 py-2 mt-2 border rounded-md text-gray-700 loading-tight">
+          class="shadow appearance-none w-full px-3 py-2 mt-2 border rounded-md text-grey-700 loading-tight">
       </div>
       <button type="submit" class="btn-blue">Sign Up</button>
     </form>
@@ -31,7 +31,7 @@
     <div v-if="confirmPassword" class="w-4/12 m-auto">
       <h3>Enter your code. Please check your email</h3>
       <div class="flex flex-col mt-2 mb-2">
-        <label class="block text-gray-700 text-sm font-bold" for="password">Code</label>
+        <label class="block text-grey-700 text-sm font-bold" for="password">Code</label>
         <input
           v-model="code"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"

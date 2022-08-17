@@ -1,0 +1,14 @@
+{
+  "resourceName": "AmplifyPhotoStorage",
+  "policyUUID": "458d573a",
+  "bucketName": "amplifyvue3graphqlb00adb49e83c495ca5a07266a0e25",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

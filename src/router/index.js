@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import SignUpPage from '@/views/SignUpPage'
 import AlbumsPage from '@/views/AlbumsPage'
 import AlbumDetailPage from '@/views/AlbumDetailPage'
+import { Auth } from 'aws-amplify'
 
 
 const routes = [
@@ -45,6 +46,17 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const isAuthenticated = await Auth.currentUserInfo()
+
+  if (requiresAuth && !isAuthenticated) {
+    next('/')
+  } else {
+    next()
+  }
 })
 
 export default router

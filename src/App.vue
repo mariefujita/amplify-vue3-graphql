@@ -9,8 +9,20 @@
 
 <script>
 import AppNav from '@/components/AppNav'
+import { mapActions } from "vuex"
+
 export default {
-  components: {AppNav}
+  components: {
+    AppNav
+  },
+  mounted () {
+    this.authAction()
+  },
+  methods: {
+    ...mapActions({
+      authAction: 'auth/authAction'
+    })
+  }
 }
 </script>
 
