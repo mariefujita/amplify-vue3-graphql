@@ -15,12 +15,37 @@ export const getAlbum = /* GraphQL */ `
           id
           createdAt
           updatedAt
+          album {
+            id
+            owner
+            ownerId
+            name
+            createdAt
+            updatedAt
+            photos {
+              nextToken
+            }
+          }
+          fullsize {
+            region
+            bucket
+            key
+          }
+          thumbnail {
+            region
+            bucket
+            key
+          }
           contentType
+          gps {
+            latitude
+            longitude
+            altitude
+          }
           height
           width
           size
           albumPhotosId
-          photoAlbumId
           owner
         }
         nextToken
@@ -43,6 +68,40 @@ export const listAlbums = /* GraphQL */ `
         createdAt
         updatedAt
         photos {
+          items {
+            id
+            createdAt
+            updatedAt
+            album {
+              id
+              owner
+              ownerId
+              name
+              createdAt
+              updatedAt
+            }
+            fullsize {
+              region
+              bucket
+              key
+            }
+            thumbnail {
+              region
+              bucket
+              key
+            }
+            contentType
+            gps {
+              latitude
+              longitude
+              altitude
+            }
+            height
+            width
+            size
+            albumPhotosId
+            owner
+          }
           nextToken
         }
       }
@@ -64,6 +123,40 @@ export const getPhoto = /* GraphQL */ `
         createdAt
         updatedAt
         photos {
+          items {
+            id
+            createdAt
+            updatedAt
+            album {
+              id
+              owner
+              ownerId
+              name
+              createdAt
+              updatedAt
+            }
+            fullsize {
+              region
+              bucket
+              key
+            }
+            thumbnail {
+              region
+              bucket
+              key
+            }
+            contentType
+            gps {
+              latitude
+              longitude
+              altitude
+            }
+            height
+            width
+            size
+            albumPhotosId
+            owner
+          }
           nextToken
         }
       }
@@ -87,7 +180,6 @@ export const getPhoto = /* GraphQL */ `
       width
       size
       albumPhotosId
-      photoAlbumId
       owner
     }
   }
@@ -110,6 +202,20 @@ export const listPhotos = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          photos {
+            items {
+              id
+              createdAt
+              updatedAt
+              contentType
+              height
+              width
+              size
+              albumPhotosId
+              owner
+            }
+            nextToken
+          }
         }
         fullsize {
           region
@@ -131,7 +237,6 @@ export const listPhotos = /* GraphQL */ `
         width
         size
         albumPhotosId
-        photoAlbumId
         owner
       }
       nextToken

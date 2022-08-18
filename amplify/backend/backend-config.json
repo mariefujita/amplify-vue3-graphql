@@ -29,7 +29,17 @@
     "AmplifyPhotoStorage": {
       "service": "S3",
       "providerPlugin": "awscloudformation",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "S3Trigger5801d451",
+          "attributes": [
+            "Name",
+            "Arn",
+            "LambdaExecutionRole"
+          ]
+        }
+      ]
     }
   },
   "api": {
@@ -60,6 +70,13 @@
           ]
         }
       }
+    }
+  },
+  "function": {
+    "S3Trigger5801d451": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true
     }
   }
 }

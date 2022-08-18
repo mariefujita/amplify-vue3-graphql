@@ -34,20 +34,21 @@ export const createAlbum = /* GraphQL */ `
             bucket
             key
           }
-          contentType
           thumbnail {
             region
             bucket
             key
           }
-          height
-          width
-          size
+          contentType
           gps {
             latitude
             longitude
             altitude
           }
+          height
+          width
+          size
+          albumPhotosId
           owner
         }
         nextToken
@@ -72,12 +73,37 @@ export const updateAlbum = /* GraphQL */ `
           id
           createdAt
           updatedAt
+          album {
+            id
+            owner
+            ownerId
+            name
+            createdAt
+            updatedAt
+            photos {
+              nextToken
+            }
+          }
+          fullsize {
+            region
+            bucket
+            key
+          }
+          thumbnail {
+            region
+            bucket
+            key
+          }
           contentType
+          gps {
+            latitude
+            longitude
+            altitude
+          }
           height
           width
           size
           albumPhotosId
-          photoAlbumId
           owner
         }
         nextToken
@@ -102,12 +128,37 @@ export const deleteAlbum = /* GraphQL */ `
           id
           createdAt
           updatedAt
+          album {
+            id
+            owner
+            ownerId
+            name
+            createdAt
+            updatedAt
+            photos {
+              nextToken
+            }
+          }
+          fullsize {
+            region
+            bucket
+            key
+          }
+          thumbnail {
+            region
+            bucket
+            key
+          }
           contentType
+          gps {
+            latitude
+            longitude
+            altitude
+          }
           height
           width
           size
           albumPhotosId
-          photoAlbumId
           owner
         }
         nextToken
@@ -132,6 +183,40 @@ export const createPhoto = /* GraphQL */ `
         createdAt
         updatedAt
         photos {
+          items {
+            id
+            createdAt
+            updatedAt
+            album {
+              id
+              owner
+              ownerId
+              name
+              createdAt
+              updatedAt
+            }
+            fullsize {
+              region
+              bucket
+              key
+            }
+            thumbnail {
+              region
+              bucket
+              key
+            }
+            contentType
+            gps {
+              latitude
+              longitude
+              altitude
+            }
+            height
+            width
+            size
+            albumPhotosId
+            owner
+          }
           nextToken
         }
       }
@@ -155,7 +240,6 @@ export const createPhoto = /* GraphQL */ `
       width
       size
       albumPhotosId
-      photoAlbumId
       owner
     }
   }
@@ -177,6 +261,40 @@ export const deletePhoto = /* GraphQL */ `
         createdAt
         updatedAt
         photos {
+          items {
+            id
+            createdAt
+            updatedAt
+            album {
+              id
+              owner
+              ownerId
+              name
+              createdAt
+              updatedAt
+            }
+            fullsize {
+              region
+              bucket
+              key
+            }
+            thumbnail {
+              region
+              bucket
+              key
+            }
+            contentType
+            gps {
+              latitude
+              longitude
+              altitude
+            }
+            height
+            width
+            size
+            albumPhotosId
+            owner
+          }
           nextToken
         }
       }
@@ -200,7 +318,6 @@ export const deletePhoto = /* GraphQL */ `
       width
       size
       albumPhotosId
-      photoAlbumId
       owner
     }
   }
@@ -222,6 +339,40 @@ export const updatePhoto = /* GraphQL */ `
         createdAt
         updatedAt
         photos {
+          items {
+            id
+            createdAt
+            updatedAt
+            album {
+              id
+              owner
+              ownerId
+              name
+              createdAt
+              updatedAt
+            }
+            fullsize {
+              region
+              bucket
+              key
+            }
+            thumbnail {
+              region
+              bucket
+              key
+            }
+            contentType
+            gps {
+              latitude
+              longitude
+              altitude
+            }
+            height
+            width
+            size
+            albumPhotosId
+            owner
+          }
           nextToken
         }
       }
@@ -245,7 +396,6 @@ export const updatePhoto = /* GraphQL */ `
       width
       size
       albumPhotosId
-      photoAlbumId
       owner
     }
   }
