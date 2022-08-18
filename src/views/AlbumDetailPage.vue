@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3 class="text-4xl font-semibold">Album {{ albumName }}</h3>
-    <div class="flex w-full items-center justify-center bg-grey-lighter">
+    <h3 class="text-4xl font-semibold mb-10">Album {{ albumName }}</h3>
+    <div class="flex w-full items-center justify-center bg-grey-lighter mb-10">
       <form enctype="multipart/form-data" novalidate>
         <label class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-green-600">
           <svg
@@ -22,24 +22,26 @@
         </label>
       </form>
     </div>
-    <div class="text-2xl mt-4">List Of Photos</div>
+    <hr />
+    <div class="text-2xl mt-5">List Of Photos</div>
       <div v-if="photos" class="flex flex-wrap p-10 justify-center m-auto w-full">
-        <div v-for="(photo, index) in photos" :key="index" class="shadow-xl ml-4 mt-4 w-4/12">
+        <div v-for="(photo, index) in photos" :key="index" class="shadow-xl ml-4 mt-4 w-3/12">
           <amplify-s3-image
             level="protected"
-            :img-key="photo.fullsize.key"
-            class="w-4/12"
+            :img-key="photo.thumbnail ? photo.thumbnail.key : photo.fullsize.key"
+            class="w-3/12"
           />
-<!--          <div v-if="photo.createdAt && photo.gps">-->
-<!--            <ul>-->
-<!--              <li>Created At {{ photo.createdAt }}</li>-->
-<!--              <li>-->
-<!--                latitude-->
-<!--                {{ photo.gps.latitude }}-->
-<!--              </li>-->
-<!--              <li>longitude At {{ photo.gps.longitude }}</li>-->
-<!--            </ul>-->
-<!--          </div>-->
+          <div class="text-lg font-semibold cursor-pointer" @click="deletePhoto(photo)">×</div>
+          <div v-if="photo.createdAt && photo.gps">
+            <ul>
+              <li>Created At {{ photo.createdAt }}</li>
+              <li>
+                latitude
+                {{ photo.gps.latitude }}
+              </li>
+              <li>longitude At {{ photo.gps.longitude }}</li>
+            </ul>
+          </div>
         </div>
       </div>
   </div>
@@ -77,9 +79,25 @@ export default {
         }
     },
     async getPhotos () {
+      while (this.photos.length > 0) {
+        this.photos.pop()
+      }
       const album = await this.$store.dispatch('albumInfo/getAlbum', this.id)
-      this.photos = album.data.getAlbum.photos.items
+      for (const photo of album.data.getAlbum.photos.items) {
+        this.photos.push(photo)
+      }
       this.albumName = album.data.getAlbum.name
+    },
+    async deletePhoto (photo) {
+      if (!photo.id) {
+        return
+      }
+      try {
+        await this.$store.dispatch('albumInfo/deletePhoto', photo.id)
+        await this.getPhotos()
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 

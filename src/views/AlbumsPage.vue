@@ -1,18 +1,18 @@
 <template>
   <div>
-    <h3 class="text-3xl">Create Or Choose An Album</h3>
-    <div class="flex flex-col m-auto w-64">
+    <h3 class="text-3xl font-semibold mb-5">Create Or Choose An Album</h3>
+    <div class="flex flex-col m-auto w-64 mb-10">
       <input
         class="my-4 bg-grey-200 appearance-none border-2 border-grey-200 rounded w-full py-2 px-4 text-grey-700"
         placeholder="Album Name"
         type="text"
         v-model="albumName"
       />
-      <button class="btn-blue mb-4" @click="createAlbum">Create Album</button>
+      <button class="btn-blue" @click="createAlbum">Create Album</button>
     </div>
-    <div class="text-red-500">{{ error }}</div>
+    <div class="text-red-500 mb-10">{{ error }}</div>
     <hr />
-    <h5 class="mt-4 text-2xl">List Of Albums</h5>
+    <h5 class="mt-5 text-2xl">List Of Albums</h5>
     <div class="flex flex-wrap w-full justify-center">
       <div
         v-for="(album, id) in albums"

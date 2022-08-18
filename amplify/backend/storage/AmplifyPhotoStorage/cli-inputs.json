@@ -9,6 +9,6 @@
     "READ",
     "DELETE"
   ],
-  "triggerFunction": "S3Trigger5801d451",
+  "triggerFunction": "AmplifyPhotoProcessor",
   "groupAccess": {}
 }

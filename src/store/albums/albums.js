@@ -5,6 +5,7 @@ import { listAlbums as listAlbumsQuery } from '@/graphql/queries'
 import { v4 as uuidv4 } from 'uuid'
 import awsconfig from '@/aws-exports'
 import { createPhoto as createPhotoMutation } from "@/graphql/mutations"
+import { deletePhoto as deletePhotoMutation } from "@/graphql/mutations"
 
 export const albumInfo = {
   namespaced: true,
@@ -64,6 +65,18 @@ export const albumInfo = {
         return Promise.resolve('success!')
       } catch (e) {
         console.log('createPhoto', e)
+        return Promise.reject(e)
+      }
+    },
+    async deletePhoto (_, photoId) {
+      try {
+        const payload = {
+          id: photoId
+        }
+        await API.graphql(graphqlOperation(deletePhotoMutation, { input: payload }))
+        return Promise.resolve()
+      } catch (e) {
+        console.error('deletePhoto', e)
         return Promise.reject(e)
       }
     }

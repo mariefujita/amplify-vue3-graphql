@@ -14,39 +14,16 @@ export const getAlbum = /* GraphQL */ `
         items {
           id
           createdAt
-          updatedAt
-          album {
-            id
-            owner
-            ownerId
-            name
-            createdAt
-            updatedAt
-            photos {
-              nextToken
-            }
-          }
           fullsize {
-            region
-            bucket
             key
           }
           thumbnail {
-            region
-            bucket
             key
           }
-          contentType
           gps {
             latitude
             longitude
-            altitude
           }
-          height
-          width
-          size
-          albumPhotosId
-          owner
         }
         nextToken
       }

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "api": {
+      "AmplifyPhotoApi": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

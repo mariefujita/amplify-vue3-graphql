@@ -9,7 +9,7 @@
           id="username"
           class="shadow appearance-none w-full px-3 py-2 mt-2 border rounded-md text-grey-700 loading-tight">
       </div>
-      <div class="flex flex-col mt-10 mb-5">
+      <div class="flex flex-col mt-5 mb-10">
         <label class="block text-grey-700 text-sm font-bold mb-2" for="password">Password</label>
         <input
           v-model="password"
