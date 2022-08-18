@@ -37,14 +37,14 @@ export const albumInfo = {
         aws_user_files_s3_bucket_region: region,
         aws_user_files_s3_bucket: bucket
       } = awsconfig
-      const { file, id } = data
+      const { file, type: mimeType, id } = data
       const extension = file.name.substr(file.name.lastIndexOf('.')+1)
       const photoId = uuidv4()
       const key = `images/${photoId}.${extension}`
       const inputData = {
         id: photoId,
-        photoAlbumId: id,
-        contentType: 'mimeType',
+        albumPhotosId: id,
+        contentType: mimeType,
         fullsize: {
           key,
           region,
@@ -54,15 +54,13 @@ export const albumInfo = {
       try {
         await Storage.put(key, file, {
           level: 'protected',
-          contentType: 'mimeType',
+          contentType: mimeType,
           metadata: {
             albumId: id,
             photoId
           }
         })
-        const res = await API.graphql(graphqlOperation(createPhotoMutation, { input: inputData }))
-        console.info(res)
-        console.info(inputData)
+        await API.graphql(graphqlOperation(createPhotoMutation, { input: inputData }))
         return Promise.resolve('success!')
       } catch (e) {
         console.log('createPhoto', e)

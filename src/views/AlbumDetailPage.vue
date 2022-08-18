@@ -78,7 +78,6 @@ export default {
     },
     async getPhotos () {
       const album = await this.$store.dispatch('albumInfo/getAlbum', this.id)
-      console.log(album)
       this.photos = album.data.getAlbum.photos.items
       this.albumName = album.data.getAlbum.name
     }
