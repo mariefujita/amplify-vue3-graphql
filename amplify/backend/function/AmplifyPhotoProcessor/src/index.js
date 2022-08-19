@@ -1,6 +1,6 @@
 /* Amplify Params - DO NOT EDIT
-	API_AMPLIFYPHOTOSAPI_GRAPHQLAPIENDPOINTOUTPUT
-	API_AMPLIFYPHOTOSAPI_GRAPHQLAPIIDOUTPUT
+	API_AMPLIFYPHOTOAPI_GRAPHQLAPIENDPOINTOUTPUT
+	API_AMPLIFYPHOTOAPI_GRAPHQLAPIIDOUTPUT
 Amplify Params - DO NOT EDIT */
 
 const AWS = require("aws-sdk");
@@ -95,7 +95,7 @@ const updatePhotoMutation = `mutation UpdatePhoto($input: UpdatePhotoInput!) {
 }`;
 
 async function updatePhotoRecord(photoId, metadata, thumbnail) {
-    console.log("plhoto, id", photoId);
+    console.log("photo, id", photoId);
     if (metadata && metadata.gps && !metadata.gps.altitude) {
         metadata.gps.altitude = 0;
     }

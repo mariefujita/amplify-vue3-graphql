@@ -11,6 +11,11 @@ export default {
   name: 'HomeView',
   components: {
     AppLogin
+  },
+  mounted () {
+    if (this.$store.state.auth.user) {
+      this.$router.push('/albums')
+    }
   }
 }
 </script>
